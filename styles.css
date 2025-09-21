@@ -1,0 +1,228 @@
+/* Reset básico */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+:root{
+  --bg:#0f1721;
+  --card:#0b0f14;
+  --accent:#4CAF50;
+  --accent-dark:#388E3C;
+  --muted:#9aa4ad;
+  --glass: rgba(255,255,255,0.04);
+  --gold:#D4AF37;
+  --radius:14px;
+
+  /* Paleta extra */
+  --green-light:#8BC34A;
+  --red:#E53935;
+  --yellow:#FDD835;
+  --purple:#8E24AA;
+  --orange:#FB8C00;
+  --dark:#2C2C2C;
+}
+
+body{
+  background: linear-gradient(180deg,#0b0f14 0%, #0f1721 100%);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:80px;
+}
+
+/* NAV */
+.nav{
+  position:sticky; top:0; z-index:40;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.nav .container{
+  display:flex; align-items:center; gap:12px;
+  max-width:1100px; margin:0 auto; padding:12px;
+  justify-content:space-between;
+}
+.brand {display:flex; gap:12px; align-items:center}
+.brand img{height:48px; width:48px; object-fit:cover; border-radius:10px; box-shadow: 0 4px 14px rgba(0,0,0,0.5)}
+.brand h1{font-size:20px; margin:0; letter-spacing:0.4px; color:var(--gold)}
+.brand small{display:block;font-size:11px;color:var(--muted); margin-top:2px}
+
+.actions{display:flex; gap:8px; align-items:center}
+.cart-btn{
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff; border:none; padding:9px 14px;
+  border-radius:10px; font-weight:700; cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px;
+  box-shadow: 0 6px 18px rgba(108,153,73,0.25);
+  transition:transform .2s;
+}
+.cart-btn:hover{ transform:scale(1.05) }
+.cart-count{
+  background:var(--yellow); color:#2C2C2C;
+  padding:4px 7px; border-radius:999px; font-weight:700;
+}
+
+/* HERO / Carrusel */
+.hero{
+  max-width:1100px; margin:18px auto; padding:0 16px;
+  display:grid; gap:18px;
+}
+.carousel{
+  position:relative; overflow:hidden; border-radius:var(--radius);
+  background:linear-gradient(90deg, rgba(0,0,0,0.24), rgba(255,255,255,0.02));
+  min-height:220px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 30px rgba(3,6,10,0.6);
+  padding:18px;
+}
+.carousel .slides{
+  display:flex; transition:transform .6s cubic-bezier(.2,.9,.2,1); width:100%;
+}
+.slide{
+  min-width:100%; padding:12px; display:flex; gap:14px; align-items:center;
+}
+.slide .left{flex:1}
+.slide h2{margin:0;font-size:20px;color:var(--gold)}
+.slide p{margin:6px 0 0;color:var(--muted)}
+.slide .tag{
+  display:inline-block;background:var(--orange);
+  color:#fff;padding:6px 10px;border-radius:8px;
+  font-weight:700;margin-top:12px
+}
+
+.carousel .controls{position:absolute; bottom:12px; right:12px; display:flex; gap:8px}
+.dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.12);cursor:pointer}
+.dot.active{background:var(--accent)}
+
+/* Grid catálogo */
+.grid{
+  max-width:1100px; margin:12px auto; padding:0 16px 20px;
+  display:grid; gap:14px;
+  grid-template-columns: 1fr;
+}
+@media(min-width:660px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+@media(min-width:980px){ .grid{ grid-template-columns: repeat(3, 1fr);} }
+
+.card{
+  background: linear-gradient(180deg,var(--card), var(--glass));
+  border-radius:12px; padding:12px;
+  display:flex; gap:12px; align-items:center;
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+}
+.thumb{width:86px;height:86px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(180deg,#ffffff10,#00000022);
+  display:flex;align-items:center;justify-content:center;font-size:22px}
+.meta{flex:1}
+.meta h3{margin:0;font-size:16px;color:#fff}
+.meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.price{font-weight:800;color:var(--green-light); font-size:16px}
+.card .add{
+  background:var(--accent);color:#fff;border:none;
+  padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;
+  transition:background .2s;
+}
+.card .add:hover{ background:var(--accent-dark) }
+
+/* Modal carrito */
+.modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:80; padding:18px; }
+.modal{ width:100%; max-width:720px; background:linear-gradient(180deg,#071217, #0b1417); border-radius:12px; padding:18px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.04) }
+.modal h3{margin:0 0 8px;color:var(--gold)}
+.cart-list{ max-height:280px; overflow:auto; padding:6px; display:flex; flex-direction:column; gap:8px; margin-bottom:12px}
+.cart-item{display:flex; gap:10px; align-items:center; background: rgba(255,255,255,0.05); padding:8px; border-radius:10px}
+.cart-item .ri{flex:1}
+.qctrl{display:flex; gap:8px; align-items:center}
+.small-btn{
+  border:none;cursor:pointer;
+  padding:6px 10px; border-radius:8px; font-weight:700; transition:all .2s;
+}
+.small-btn.add{background:var(--yellow); color:#2C2C2C;}
+.small-btn.add:hover{background:#fbc02d}
+.small-btn.remove{background:var(--red); color:#fff;}
+.small-btn.remove:hover{background:#c62828}
+
+.order-controls{display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:10px}
+.option{
+  display:flex; gap:8px; align-items:center; padding:8px 10px; border-radius:8px; background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.option input{width:18px;height:18px}
+.pickup-time{display:none; margin-left:8px; }
+.summary{display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-weight:700; color:var(--muted)}
+.wh-btn{
+  background:linear-gradient(90deg,var(--accent),var(--green-light));
+  color:#fff; padding:12px 14px; border-radius:10px; border:none;
+  cursor:pointer; font-weight:800; width:100%;
+  transition:transform .2s;
+}
+.wh-btn:hover{ transform:scale(1.03) }
+
+/* Footer */
+footer{max-width:1100px;margin:24px auto;color:var(--muted); padding:16px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+footer .left{display:flex; gap:12px; align-items:center}
+footer small{display:block;color:var(--muted); font-size:13px}
+
+/* util */
+.muted{color:var(--muted)}
+.center{display:flex; align-items:center; justify-content:center}
+
+/* tiny responsive tweaks */
+@media(max-width:660px){
+  .grid{ grid-template-columns: 1fr; }
+  .card{ flex-direction:column; align-items:flex-start }
+  .thumb{width:100%; height:140px}
+  .meta{width:100%}
+  .cart-btn{padding:8px 10px}
+}
+@media(max-width:420px){
+  .brand h1{font-size:16px}
+  .brand img{height:42px;width:42px}
+  .slide h2{font-size:18px}
+}
+
+
+/* Contenedor de los filtros */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Aumentar el espacio entre botones */
+    margin: 20px auto;
+    flex-wrap: wrap;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Botones de filtro */
+.filter-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: transparent; /* Fondo transparente */
+    border: 1px solid #4a4a4a; /* Borde muy sutil */
+    color: #a8a8a8; /* Texto gris claro */
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+/* Ocultar el input radio */
+.filter-option input {
+    display: none;
+}
+
+/* Estado de hover */
+.filter-option:hover {
+    color: #f8f8f8; /* El texto se aclara al pasar el mouse */
+    border-color: #7a7a7a; /* El borde se aclara */
+}
+
+/* Estilo para el filtro seleccionado */
+.filter-option input:checked + span {
+    color: #92e02e; /* Color de acento para el texto */
+    font-weight: 600;
+    border-bottom: 2px solid #92e02e; /* Resaltar con una línea debajo */
+    padding-bottom: 6px; /* Ajuste para la línea */
+    /* Anular el borde general para usar solo la línea inferior */
+    border: none;
+}

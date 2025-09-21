@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mercadito Don Ariel — Catálogo</title>
+    <meta name="description" content="Catálogo online - Mercadito Don Ariel. Pedí por WhatsApp." />
+    <link rel="icon" href="/img/logo2.jpeg" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- NAV -->
+    <header class="nav" role="banner">
+        <div class="container">
+            <div class="brand">
+                <!-- Reemplaza la ruta por tu logo real -->
+                <img src="/img/logo1.png" alt="Mercadito Don Ariel - logo">
+                <div>
+                    <h1>Mercadito Don Ariel</h1>
+                    <small class="muted">Frutas, verduras y lo que hace falta</small>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="cart-btn" id="openCartBtn" aria-haspopup="dialog" title="Ver carrito">
+                    🧺 Carrito <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO / Carousel -->
+    <main>
+        <section class="hero" aria-label="Ofertas de la semana">
+            <div class="carousel" id="carousel">
+                <div class="slides" id="slides">
+                    <div class="slide">
+                        <div class="left">
+                            <h2>Ofertas de la semana</h2>
+                            <p>Bananas, Manzanas y Lechuga en promo. Todo fresco, directo del productor.</p>
+                            <div class="tag">Hasta 25% OFF</div>
+                        </div>
+                        <div class="right center" style="min-width:200px">
+                            <!-- imagen de ejemplo -->
+                            <img alt="oferta"
+                                src="https://images.unsplash.com/photo-1582281298048-8a1b6d48ba2d?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+                                style="width:180px;border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.6)">
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="left">
+                            <h2>Equipos para ensaladas</h2>
+                            <p>Mixes listos para ensalada y packs familiares. Pedí y lo armamos.</p>
+                            <div class="tag">Pack x3</div>
+                        </div>
+                        <div class="right center" style="min-width:200px">
+                            <img alt="pack"
+                                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+                                style="width:180px;border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.6)">
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="left">
+                            <h2>Equipos para ensaladas</h2>
+                            <p>Mixes listos para ensalada y packs familiares. Pedí y lo armamos.</p>
+                            <div class="tag">Pack x3</div>
+                        </div>
+                        <div class="right center" style="min-width:200px">
+                            <img alt="pack"
+                                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+                                style="width:180px;border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.6)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls" aria-hidden="false" id="dots"></div>
+            </div>
+        </section>
+
+        <div class="filter-container">
+            <label class="filter-option">
+                <input type="radio" name="category" value="all" checked>
+                <span>Todas</span>
+            </label>
+            <label class="filter-option">
+                <input type="radio" name="category" value="fruta">
+                <span>Frutas</span>
+            </label>
+            <label class="filter-option">
+                <input type="radio" name="category" value="verdura">
+                <span>Verduras</span>
+            </label>
+            <label class="filter-option">
+                <input type="radio" name="category" value="otros">
+                <span>Otros</span>
+            </label>
+        </div>
+
+        <!-- CATALOGO -->
+        <section style="max-width:1100px;margin:0 auto;padding:10px 16px;">
+            <h2 style="margin:6px 0 12px">Catálogo</h2>
+            <div class="grid" id="productsGrid">
+                <!-- Cards generadas por JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL CARRITO -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal" role="document" aria-labelledby="cartTitle">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px">
+                <h3 id="cartTitle">Tu carrito</h3>
+                <button id="closeCartBtn" class="small-btn" aria-label="Cerrar carrito">Cerrar ✖</button>
+            </div>
+
+            <div class="cart-list" id="cartList">
+                <!-- items agregados -->
+            </div>
+
+            <div class="order-controls" role="radiogroup" aria-label="Opciones de retiro o envío">
+                <label class="option">
+                    <input type="radio" name="deliveryOption" value="delivery" checked> Envío a domicilio
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="deliveryOption" value="pickup"> Retiro en local
+                </label>
+
+                <div class="pickup-time" id="pickupTimeWrap">
+                    <label for="pickupTime" class="muted" style="font-size:13px">Seleccioná hora:</label>
+                    <input id="pickupTime" type="time"
+                        style="padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit;margin-left:8px">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <div style="flex:1">
+                    <div class="summary"><span>Total</span><span id="cartTotal">$0</span></div>
+                </div>
+                <div style="width:260px">
+                    <button class="wh-btn" id="whBtn" title="Enviar pedido por WhatsApp">Enviar por WhatsApp</button>
+                </div>
+            </div>
+            <p style="margin-top:8px;font-size:13px;color:var(--muted)">Al enviar, se abrirá WhatsApp con tu pedido
+                listo para enviar. Revisalo y mandalo cuando quieras.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="left">
+            <img src="assets/logo.png" alt="logo" style="height:44px;width:44px;border-radius:8px">
+            <div>
+                <strong>Mercadito Don Ariel</strong>
+                <small class="muted">Av. Ejemplo 123 — Montevideo</small>
+            </div>
+        </div>
+        <div>
+            <small class="muted">Horario: Lun a Sab 08:00 - 20:00 · WhatsApp: +598 9XXXXXXXX</small>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
