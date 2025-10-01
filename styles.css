@@ -65,32 +65,86 @@ body{
   max-width:1100px; margin:18px auto; padding:0 16px;
   display:grid; gap:18px;
 }
-.carousel{
-  position:relative; overflow:hidden; border-radius:var(--radius);
-  background:linear-gradient(90deg, rgba(0,0,0,0.24), rgba(255,255,255,0.02));
-  min-height:220px;
-  display:flex; align-items:center; justify-content:center;
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, rgba(0,0,0,0.24), rgba(255,255,255,0.02));
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 8px 30px rgba(3,6,10,0.6);
-  padding:18px;
+  padding: 0; /* ❌ sacamos padding, estaba rompiendo */
 }
-.carousel .slides{
-  display:flex; transition:transform .6s cubic-bezier(.2,.9,.2,1); width:100%;
+
+.carousel .slides {
+  display: flex;
+  transition: transform .6s cubic-bezier(.2,.9,.2,1);
+  width: 100%;
 }
-.slide{
-  min-width:100%; padding:12px; display:flex; gap:14px; align-items:center;
+
+.slide {
+  flex: 0 0 100%;          /* ocupa exactamente 100% */
+  box-sizing: border-box;  /* padding no suma extra */
+  padding: 18px;           /* ahora sí el padding interno */
+  display: flex;
+  gap: 14px;
+  align-items: center;
 }
+
 .slide .left{flex:1}
 .slide h2{margin:0;font-size:20px;color:var(--gold)}
 .slide p{margin:6px 0 0;color:var(--muted)}
 .slide .tag{
   display:inline-block;background:var(--orange);
   color:#fff;padding:6px 10px;border-radius:8px;
-  font-weight:700;margin-top:12px
+  font-weight:900;margin-top:12px
+}
+
+.slide .add {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .3s;
+  max-width: 160px;
+}
+
+.slide .add:hover {
+  background: #ff6b3d;
 }
 
 .carousel .controls{position:absolute; bottom:12px; right:12px; display:flex; gap:8px}
 .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.12);cursor:pointer}
 .dot.active{background:var(--accent)}
+
+/* Flechas del carrusel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  transition: background .3s;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
 
 /* Grid catálogo */
 .grid{
