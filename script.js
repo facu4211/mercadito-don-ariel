@@ -1,5 +1,5 @@
 const PRODUCTS = [
-  { id: 11, name: "2 Acelga", price: 99, img: "img/acelga.webp", category: "ofertas", "verdura" },
+  { id: 11, name: "2 Acelga", price: 99, img: "img/acelga.webp", category: "ofertas"},
   { id: 37, name: "Ajo", price: 45, img: "img/ajo.webp", category: "verdura" },
   { id: 48, name: "Albahaca", price: 95, img: "img/albahaca.webp", category: "verdura" },
   { id: 76, name: "Ananá", price: 180, img: "img/anana.webp", category: "fruta" },
